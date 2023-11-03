@@ -1,0 +1,146 @@
+{% extends "index.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="icon" href="{% static 'img/spor-removebg-preview.png'%}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://unpkg.com/bs-brain@2.0.0/components/footers/footer-4/assets/css/footer-4.css" />
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Wizard Haber</title>
+</head>
+
+<body>
+
+    <!-- Weather -->
+    <div id="ww_7436003bc4300" v='1.3' loc='auto'
+        a='{"t":"responsive","lang":"tr","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+        <a href="https://sharpweather.com/tr/widgets/" id="ww_7436003bc4300_u" target="_blank">Widget hava durumu
+            ekleme</a>
+    </div>
+
+    {% block content %}
+    
+    
+
+    <!-- Kayan Yazı -->
+    <div class="marquee d-flex align-items-center">
+        <h2 class="bg-danger text-white p-2" style="width: 200px;">Son Dakika</h2>
+        <marquee scrollamount="18" class="p-2 text-black">
+            <h4 class="text-danger">17:45</h4>Türkiye ve dünyadan son dakika haberleri, en son haberler, yeni gelişmeler
+            ve
+            güncel son durum.
+        </marquee>
+    </div>
+
+    <!-- Kart Yapısı -->
+    <main class="mt-4 mb-5">
+        <div class="container">
+            <!--Grid row-->
+            <div class="row">
+                <!--Kart Yapısı col-md-8-->
+                
+                  
+                
+                <div class="col-md-8 p-3">
+
+                    <!--Section: Post data-mdb-->
+                    <section class="border-bottom mb-4 d-flex flex-column">
+                        <h1>{{haber.title |linebreaks }}</h1>
+                        <img src="{{haber.haberResim.url}}"
+                            class="img-fluid shadow-2-strong rounded-5 mb-4" alt="" />
+                            <p class="mb-3">{{haber.haberText |linebreaks}}</p>
+                        <div class="row align-items-center mb-4 mt-5">
+                            <div class="col-lg-12 text-center text-lg-start mb-3 m-lg-0">
+                                <img src="{{haber.haberResim2.url}}" class="rounded-3 shadow-1-strong me-2" height="35" alt=""
+                                    loading="lazy" />
+                            </div>
+                        </div>
+                    </section>
+                    <!--Section: Post data-mdb-->
+
+                    <!--Section: Text-->
+                    <section class="d-flex flex-column">
+                        <p>
+                            {{haber.haberText2 |linebreaks}}
+                        </p>
+
+                        <img src="{{haber.haberResim3.url}}" class="img-fluid shadow-1-strong rounded-5 mb-4 mt-4" alt="" />
+
+                        <p>
+                           {{haber.haberText3 |linebreaks}}
+                        </p>
+                        
+                    </section>
+                </div>
+              
+                <!-- Kart Yapısı col-md-4 -->
+                <div class="col-md-4 pt-5 d-flex flex-column align-items-center">
+                    <h3>İLGİNİZİ <span>ÇEKEBİLİR!</span></h3>
+                    {% for i in haber2 %}
+                    <div class="row mt-5">
+                        <a href="/detay/{{i.id}}/">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{i.haberResim.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">{{i.title}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    
+
+    {% endblock content %}
+    
+    <button onclick="topFunction()" id="myBtn" style="font-size: 15px;"><i class="fa-solid fa-arrow-up fa-lg" style="color: #ffffff;"></i> Başa Dön!</button>
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.97074.js"></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async src="https://app2.weatherwidget.org/js/?id=ww_7436003bc4300"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- Script -->
+    <script src="{% static 'script/script.js'%}"></script>
+</body>
+
+</html>
